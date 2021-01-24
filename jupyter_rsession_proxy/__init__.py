@@ -30,11 +30,18 @@ def setup_rserver():
         return dict(USER=getpass.getuser())
 
     def _get_cmd(port):
+        if os.getenv('RSERVER_WWW_ROOT_PATH'):
+            www_path = ['--www-root-path=' + os.getenv('RSERVER_WWW_ROOT_PATH')]
+        else:
+            www_path = []
+
         return [
             get_rstudio_executable('rserver'),
             '--www-port=' + str(port),
-            '--www-frame-origin=same'
-        ]
+            '--www-frame-origin=same',
+            '--auth-none=1',
+            '--server-user=' + getpass.getuser()
+        ] + www_path
 
     return {
         'command': _get_cmd,
