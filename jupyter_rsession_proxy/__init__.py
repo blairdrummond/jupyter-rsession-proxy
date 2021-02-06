@@ -69,7 +69,7 @@ def setup_rserver():
         # RSESSION_PROXY_RSTUDIO_1_4 must be set.
         if os.environ.get('RSESSION_PROXY_RSTUDIO_1_4', False):
             # base_url has a trailing slash
-            cmd.append('--www-root-path={base_url}rstudio/')
+            cmd.append('--www-root-path=/notebook/blair/rstudio/')
             cmd.append(f'--database-config-file={db_config()}')
 
         return cmd
