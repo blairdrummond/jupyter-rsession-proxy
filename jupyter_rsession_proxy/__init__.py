@@ -72,6 +72,9 @@ def setup_rserver():
             cmd.append('--www-root-path=/notebook/blair/rstudio/')
             cmd.append(f'--database-config-file={db_config()}')
 
+        with open('/tmp/log.log', 'a') as f:
+            f.write("HERE:" + '\n'.join(cmd) + '\n==========\n')
+
         return cmd
 
     return {
